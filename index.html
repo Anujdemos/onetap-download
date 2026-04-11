@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -11,32 +10,28 @@ body {
     margin: 0;
     font-family: Arial;
     background: #f1f3f4;
+    text-align: center;
 }
 
 .header {
     background: white;
     padding: 20px;
-    display: flex;
-    align-items: center;
 }
 
 .icon {
-    width: 80px;
-    height: 80px;
+    width: 90px;
     border-radius: 20px;
 }
 
-.info {
-    margin-left: 15px;
-}
-
 .title {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 .rating {
-    color: #4CAF50;
+    color: green;
+    margin-top: 5px;
 }
 
 .install-btn {
@@ -44,36 +39,37 @@ body {
     padding: 15px;
     background: #1a73e8;
     color: white;
-    text-align: center;
     border-radius: 10px;
     font-size: 18px;
     cursor: pointer;
 }
 
-.screenshots {
-    display: flex;
-    overflow-x: scroll;
-    padding: 10px;
-}
-
-.screenshots img {
-    width: 220px;
-    margin-right: 10px;
-    border-radius: 12px;
-}
-
-.desc {
-    padding: 15px;
-    color: #333;
+.status {
+    margin-top: 20px;
+    color: #555;
 }
 </style>
 
 <script>
-window.onload = function() {
-    setTimeout(function(){
-        window.open("https://github.com/Anujdemos/onetap-download/releases/download/v1.0/app-debug.apk?raw=true", "_blank");
+function openApp() {
+
+    var start = Date.now();
+
+    // 🔥 App खोलने की कोशिश
+    window.location.href = "onetap://video";
+
+    // 🔥 अगर app नहीं है → APK download
+    setTimeout(function () {
+        var end = Date.now();
+
+        if (end - start < 2000) {
+            window.location.href = "https://github.com/Anujdemos/onetap-download/releases/download/v1.0/app-debug.apk";
+        }
     }, 1500);
 }
+
+// Auto run
+window.onload = openApp;
 </script>
 
 </head>
@@ -82,25 +78,16 @@ window.onload = function() {
 
 <div class="header">
     <img src="logo.png" class="icon">
-    <div class="info">
-        <div class="title">Onetap Browser</div>
-        <div class="rating">⭐ 4.8 • 50K+ Downloads</div>
-    </div>
+    <div class="title">Onetap Browser</div>
+    <div class="rating">⭐ 4.8 • 50K+ Downloads</div>
 </div>
 
-<div class="install-btn" onclick="window.open('https://github.com/Anujdemos/onetap-download/releases/download/v1.0/app-debug.apk?raw=true')">
-    Install
+<div class="install-btn" onclick="openApp()">
+    Open / Install App
 </div>
 
-<div class="screenshots">
-    <img src="screen1.jpg">
-    <img src="screen2.jpg">
-    <img src="screen3.jpg">
-</div>
-
-<div class="desc">
-    Onetap Browser lets you watch and access all your favorite videos instantly.
-    Fast, secure and easy to use. Download now and enjoy unlimited content.
+<div class="status">
+    Opening app... If not installed, downloading APK
 </div>
 
 </body>
