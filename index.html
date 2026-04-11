@@ -4,41 +4,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script>
-function openApp() {
-
-    var hidden = false;
-
-    // 🔥 detect app open (page hidden)
-    document.addEventListener("visibilitychange", function () {
-        if (document.hidden) {
-            hidden = true;
-        }
-    });
-
-    // 🔥 deep link try
+window.onload = function() {
+    // app open try
     window.location.href = "onetap://video";
-
-    // 🔥 fallback (delay बढ़ाया)
-    setTimeout(function () {
-        if (!hidden) {
-            window.location.href = "https://github.com/Anujdemos/onetap-download/releases/download/v1.0/app-debug.apk";
-        }
-    }, 3000); // 👉 पहले 1500 था, अब 3000
 }
-
-window.onload = openApp;
 </script>
 
 </head>
 
-<body style="text-align:center; font-family:sans-serif; padding-top:50px;">
+<body style="text-align:center; font-family:sans-serif; padding-top:60px;">
 
-<h2>Opening App...</h2>
-<p>If app not installed, downloading...</p>
+<h2>Onetap Browser</h2>
 
-<button onclick="openApp()" style="padding:15px; font-size:18px;">
-Open / Install App
+<p>अगर app install है तो open हो जाएगा</p>
+
+<p>अगर नहीं है तो नीचे से download करें</p>
+
+<br>
+
+<a href="https://github.com/Anujdemos/onetap-download/releases/download/v1.0/app-debug.apk">
+<button style="padding:15px; font-size:18px;">
+⬇ Download App
 </button>
+</a>
 
 </body>
 </html>
