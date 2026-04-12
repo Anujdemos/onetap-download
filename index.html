@@ -41,7 +41,7 @@ body {
 
 /* BUTTON */
 .install-btn {
-    margin: 20px;
+    margin: 15px;
     padding: 15px;
     background: #1a73e8;
     color: white;
@@ -49,6 +49,10 @@ body {
     border-radius: 10px;
     font-size: 18px;
     cursor: pointer;
+}
+
+.download-btn {
+    background: #34a853;
 }
 
 /* SCREENSHOTS */
@@ -64,7 +68,7 @@ body {
     border-radius: 12px;
 }
 
-/* DESCRIPTION */
+/* DESC */
 .desc {
     padding: 15px;
     color: #333;
@@ -72,20 +76,37 @@ body {
 </style>
 
 <script>
-// 🔥 APP OPEN FUNCTION
 function openApp() {
-    window.location.href = "onetap://video";
+    window.location.href = "onetap://video?id=1";
 }
 
-// 🔥 DOWNLOAD FUNCTION
 function downloadApp() {
     window.location.href = "https://github.com/Anujdemos/onetap-download/releases/download/v1.0/app-debug.apk";
 }
 
-// 🔥 AUTO TRY (NO FORCE DOWNLOAD)
+// 🔥 AUTO SYSTEM (SMART)
 window.onload = function() {
-    setTimeout(openApp, 500);
-}
+
+    var hidden = false;
+
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            hidden = true;
+        }
+    });
+
+    // try open app
+    setTimeout(function(){
+        openApp();
+    }, 500);
+
+    // fallback download
+    setTimeout(function(){
+        if (!hidden) {
+            downloadApp();
+        }
+    }, 3500);
+};
 </script>
 
 </head>
@@ -101,12 +122,12 @@ window.onload = function() {
     </div>
 </div>
 
-<!-- BUTTON -->
+<!-- BUTTONS -->
 <div class="install-btn" onclick="openApp()">
     ▶ Open App
 </div>
 
-<div class="install-btn" onclick="downloadApp()" style="background:#34a853;">
+<div class="install-btn download-btn" onclick="downloadApp()">
     ⬇ Download App
 </div>
 
@@ -119,7 +140,7 @@ window.onload = function() {
 
 <!-- DESCRIPTION -->
 <div class="desc">
-    Onetap Browser lets you watch and access all your favorite videos instantly.
+    Onetap Browser lets you watch all videos in one place.
     Fast, secure and easy to use. Install now and enjoy unlimited content.
 </div>
 
